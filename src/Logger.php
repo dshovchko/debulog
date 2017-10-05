@@ -47,7 +47,7 @@ abstract class Logger implements LoggerInterface {
          *      Logger constructor
          *
          */
-        public function __construct(String $dir, $prefix='my', $debug=false)
+        public function __construct($dir, $prefix='my', $debug=false)
         {
                 $this->dir = $dir;
                 $this->prefix = $prefix;
