@@ -127,13 +127,13 @@ abstract class Logger implements LoggerInterface {
         if (!empty($this->_debugs))
         {
             $this->write($this->_debugs, $this->dir . $this->prefix . '_debug.log');
-            $this->debugs = array();
+            $this->_debugs = array();
         }
 
         if (!empty($this->_errors))
         {
             $this->write($this->_errors, $this->dir . $this->prefix . '_error.log');
-            $this->errors = array();
+            $this->_errors = array();
         }
     }
 

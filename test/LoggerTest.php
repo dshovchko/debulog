@@ -343,6 +343,21 @@ class LoggerTest extends TestCase
         );
 
         $this->assertFileNotExists('temp/debulog_debug.log');
+
+        $this->assertEquals(
+            array(),
+            $this->invokeProperty($stub, '_messages')->getValue($stub)
+        );
+
+        $this->assertEquals(
+            array(),
+            $this->invokeProperty($stub, '_errors')->getValue($stub)
+        );
+
+        $this->assertEquals(
+            array(),
+            $this->invokeProperty($stub, '_debugs')->getValue($stub)
+        );
     }
 
     public function test_sync_with_debug()
@@ -394,6 +409,21 @@ class LoggerTest extends TestCase
         $this->assertEquals(
             implode('', $expect_debug),
             $content
+        );
+
+        $this->assertEquals(
+            array(),
+            $this->invokeProperty($stub, '_messages')->getValue($stub)
+        );
+
+        $this->assertEquals(
+            array(),
+            $this->invokeProperty($stub, '_errors')->getValue($stub)
+        );
+
+        $this->assertEquals(
+            array(),
+            $this->invokeProperty($stub, '_debugs')->getValue($stub)
         );
     }
 
