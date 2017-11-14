@@ -23,7 +23,7 @@ class LoggerConstructorTest extends TestCase
     public function test_constructor()
     {
         $stub = new StubLogger1('/var/log', 'myprogram', true);
-        $message = PHP_EOL . 'start debugging at ' . strftime('%d.%m.%Y %H:%M:%S ') . PHP_EOL;
+        $message = PHP_EOL . 'start of debugging at ' . strftime('%d.%m.%Y %H:%M:%S ') . PHP_EOL;
 
         $this->assertEquals(
             '/var/log',

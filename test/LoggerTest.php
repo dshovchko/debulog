@@ -23,7 +23,7 @@ class StubLogger2 extends Debulog\Logger
 
         if ($this->ondebug === TRUE)
         {
-            $this->_debugs[] = PHP_EOL . 'start debugging at ' . strftime('%d.%m.%Y %H:%M:%S ') . PHP_EOL;
+            $this->_debugs[] = PHP_EOL . $this->log_debug_event('start');
         }
     }
 }
@@ -85,7 +85,7 @@ class LoggerTest extends TestCase
         $expect_error = array();
         $expect_debug = array();
         $stub = new StubLogger2('temp/', 'debulog', true);
-        $expect_debug[] = PHP_EOL . 'start debugging at ' . strftime('%d.%m.%Y %H:%M:%S ') . PHP_EOL;
+        $expect_debug[] = PHP_EOL . 'start of debugging at ' . strftime('%d.%m.%Y %H:%M:%S ') . PHP_EOL;
         $message = 'simply string for add() test';
         $stub->add($message);
         $expect_add[] = strftime('%d.%m.%Y %H:%M:%S ') . $message . PHP_EOL;
@@ -138,7 +138,7 @@ class LoggerTest extends TestCase
         $expect_error = array();
         $expect_debug = array();
         $stub = new StubLogger2('temp/', 'debulog', true);
-        $expect_debug[] = PHP_EOL . 'start debugging at ' . strftime('%d.%m.%Y %H:%M:%S ') . PHP_EOL;
+        $expect_debug[] = PHP_EOL . 'start of debugging at ' . strftime('%d.%m.%Y %H:%M:%S ') . PHP_EOL;
         $message = 'simply string for add() test';
         $stub->error($message);
         $expect_error[] = strftime('%d.%m.%Y %H:%M:%S ') . $message . PHP_EOL;
@@ -190,7 +190,7 @@ class LoggerTest extends TestCase
         $expect_error = array();
         $expect_debug = array();
         $stub = new StubLogger2('temp/', 'debulog', true);
-        $expect_debug[] = PHP_EOL . 'start debugging at ' . strftime('%d.%m.%Y %H:%M:%S ') . PHP_EOL;
+        $expect_debug[] = PHP_EOL . 'start of debugging at ' . strftime('%d.%m.%Y %H:%M:%S ') . PHP_EOL;
         $message = 'simply string for add() test';
         $stub->debug($message);
         $expect_debug[] = $message . PHP_EOL;
@@ -257,7 +257,7 @@ class LoggerTest extends TestCase
         $expect_error = array();
         $expect_debug = array();
         $stub = new StubLogger2('temp/', 'debulog', true);
-        $expect_debug[] = PHP_EOL . 'start debugging at ' . strftime('%d.%m.%Y %H:%M:%S ') . PHP_EOL;
+        $expect_debug[] = PHP_EOL . 'start of debugging at ' . strftime('%d.%m.%Y %H:%M:%S ') . PHP_EOL;
 
         $message = 'simply string for add() test';
         $stub->add($message);
@@ -366,7 +366,7 @@ class LoggerTest extends TestCase
         $expect_error = array();
         $expect_debug = array();
         $stub = new StubLogger2('temp/', 'debulog', true);
-        $expect_debug[] = PHP_EOL . 'start debugging at ' . strftime('%d.%m.%Y %H:%M:%S ') . PHP_EOL;
+        $expect_debug[] = PHP_EOL . 'start of debugging at ' . strftime('%d.%m.%Y %H:%M:%S ') . PHP_EOL;
 
         $message = 'simply string for add() test';
         $stub->add($message);
@@ -457,12 +457,5 @@ class LoggerTest extends TestCase
         $messages[] = 'second message';
 
         $this->invokeMethod($stub, 'write', array($messages, 'ghfdhsfdgsjgshfdsjfgdshfs/write_test.log'));
-
-        /*$this->assertFileExists('temp/write_test.log');
-        $content = file_get_contents('temp/write_test.log');
-        $this->assertEquals(
-            implode('', $messages),
-            $content
-        );*/
     }
 }

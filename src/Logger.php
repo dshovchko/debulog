@@ -55,7 +55,7 @@ abstract class Logger implements LoggerInterface {
 
         if ($this->ondebug === TRUE)
         {
-            $this->_debugs[] = PHP_EOL . 'start debugging at ' . strftime('%d.%m.%Y %H:%M:%S ') . PHP_EOL;
+            $this->_debugs[] = PHP_EOL . $this->log_debug_event('start');
         }
 
         register_shutdown_function(array($this, 'shutdown'));
@@ -69,7 +69,7 @@ abstract class Logger implements LoggerInterface {
      */
     public function add($message)
     {
-        $this->_messages[] = strftime('%d.%m.%Y %H:%M:%S ') . $message . PHP_EOL;
+        $this->_messages[] = $this->log_timestamp() . $message . PHP_EOL;
         $this->debug($message);
     }
 
@@ -81,7 +81,7 @@ abstract class Logger implements LoggerInterface {
      */
     public function error($message)
     {
-        $this->_errors[] = strftime('%d.%m.%Y %H:%M:%S ') . $message . PHP_EOL;
+        $this->_errors[] = $this->log_timestamp() . $message . PHP_EOL;
         $this->debug('ERROR: '.$message);
     }
 
@@ -107,7 +107,7 @@ abstract class Logger implements LoggerInterface {
     {
         if ($this->ondebug === TRUE)
         {
-            $this->_debugs[] = 'end of debugging at ' . strftime('%d.%m.%Y %H:%M:%S ') . PHP_EOL . PHP_EOL;
+            $this->_debugs[] = $this->log_debug_event('end') . PHP_EOL;
         }
         $this->sync();
     }
@@ -135,6 +135,27 @@ abstract class Logger implements LoggerInterface {
             $this->write($this->_errors, $this->dir . $this->prefix . '_error.log');
             $this->_errors = array();
         }
+    }
+
+    /**
+     *      Get formated string of debug event
+     *
+     *      @param string $event Name of event
+     *      @return string
+     */
+    protected function log_debug_event($event)
+    {
+        return $event . ' of debugging at ' . $this->log_timestamp() . PHP_EOL;
+    }
+
+    /**
+     *      Get formatted timestamp
+     *
+     *      @return string
+     */
+    protected function log_timestamp()
+    {
+        return strftime('%d.%m.%Y %H:%M:%S ');
     }
 
     /**
