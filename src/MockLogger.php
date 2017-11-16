@@ -15,17 +15,17 @@ class MockLogger extends Logger
     /**
      *      @var array
      */
-    protected $_add;
+    protected $_add = array();
 
     /**
      *      @var array
      */
-    protected $_error;
+    protected $_error = array();
 
     /**
      *      @var array
      */
-    protected $_debug;
+    protected $_debug = array();
 
     /**
      *      Logger constructor

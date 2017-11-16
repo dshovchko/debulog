@@ -15,6 +15,24 @@ use Debulog\MockLogger;
 
 class MockLoggerTest extends TestCase
 {
+    public function test_constructor()
+    {
+        $m = new MockLogger();
+
+        $this->assertEquals(
+            array(),
+            $m->show_log()
+        );
+        $this->assertEquals(
+            array(),
+            $m->show_error_log()
+        );
+        $this->assertEquals(
+            array(),
+            $m->show_debug_log()
+        );
+    }
+
     public function test_add()
     {
         $m = new MockLogger();
