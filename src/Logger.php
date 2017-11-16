@@ -161,7 +161,7 @@ abstract class Logger implements LoggerInterface {
     /**
      *      Write text to file
      *
-     *      @param string $messages
+     *      @param array $messages
      *      @param string $file
      *
      *      @throws Exception
