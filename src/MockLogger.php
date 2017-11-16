@@ -102,8 +102,8 @@ class MockLogger extends Logger
      */
     public function sync()
     {
-        $this->_add[] = array();
-        $this->_error[] = array();
-        $this->_debug[] = array();
+        $this->_add = array();
+        $this->_error = array();
+        $this->_debug = array();
     }
 }
