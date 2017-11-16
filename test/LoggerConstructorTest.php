@@ -53,7 +53,7 @@ class LoggerConstructorTest extends TestCase
         );
     }
 
-    public function test_constructor_defults()
+    public function test_constructor_defaults()
     {
         $stub = new StubLogger1('/var/log');
 
