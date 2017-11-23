@@ -427,6 +427,32 @@ class LoggerTest extends TestCase
         );
     }
 
+    public function test_sync_single_log()
+    {
+        $to = array();
+        $stub = new StubLogger2('temp/', 'debulog', false);
+
+        $message = 'simply string for add() test';
+        $to[] = strftime('%d.%m.%Y %H:%M:%S ') . $message . PHP_EOL;
+        $to[] = strftime('%d.%m.%Y %H:%M:%S ') . $message . PHP_EOL;
+        $expect = $to;
+
+        $stub->sync();
+        $this->invokeMethod($stub, 'sync_single_log', array(&$to, '_phpunit'));
+
+        $this->assertEquals(
+            array(),
+            $to
+        );
+
+        $this->assertFileExists('temp/debulog_phpunit.log');
+
+        $this->assertEquals(
+            implode('', $expect),
+            file_get_contents('temp/debulog_phpunit.log')
+        );
+    }
+
     public function test_write()
     {
         $stub = new StubLogger2('temp/', 'debulog', true);

@@ -114,26 +114,26 @@ abstract class Logger implements LoggerInterface {
 
     /**
      *      Sync all buffers to files
-     *
      */
     public function sync()
     {
-        if (!empty($this->_messages))
-        {
-            $this->write($this->_messages, $this->dir . $this->prefix . '.log');
-            $this->_messages = array();
-        }
+        $this->sync_single_log($this->_messages, '');
+        $this->sync_single_log($this->_debugs, '_debug');
+        $this->sync_single_log($this->_errors, '_error');
+    }
 
-        if (!empty($this->_debugs))
+    /**
+     *      Sync specific buffer to file
+     *
+     *      @param array $buffer
+     *      @param string $suffix log filename suffix
+     */
+    protected function sync_single_log(&$buffer, $suffix)
+    {
+        if ( ! empty($buffer))
         {
-            $this->write($this->_debugs, $this->dir . $this->prefix . '_debug.log');
-            $this->_debugs = array();
-        }
-
-        if (!empty($this->_errors))
-        {
-            $this->write($this->_errors, $this->dir . $this->prefix . '_error.log');
-            $this->_errors = array();
+            $this->write($buffer, $this->dir . $this->prefix . $suffix . '.log');
+            $buffer = array();
         }
     }
 
